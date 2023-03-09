@@ -36,6 +36,10 @@ public class Main {
         departmentMinSalary(employee,1);
         //Максимальная зп в отделе
         departmentMaxSalary(employee,3);
+        //Сумма затрат на зп в отделе
+        departmentSumSalary(employee,1);
+        // средняя зп в отделе
+        averageDepartmentSalary(employee,1);
     }
     public static void showAllEmployees(Employee[] employee){
         for(Employee e: employee){
@@ -114,5 +118,27 @@ public class Main {
                 System.out.println(employees[i]);
             }
         }
+    }
+    public static int departmentSumSalary(Employee[] employees, int departmentNumber){
+        sum = 0;
+        if(departmentNumber < 1 || departmentNumber > 5){
+            throw new IllegalArgumentException("Некорректный номер отдела");
+        }
+        for(int i = 0; i < employees.length; i++){
+            if(employees[i].getDepartmentNumber() == departmentNumber){
+                sum += employees[i].getEmployeeSalary();
+            }
+        }
+        System.out.println("\nСумма затрат на зарплаты за месяц в отделе №" + departmentNumber + ": " + sum +
+                            "\nСумма затрат на зарплаты за год в отделе №" + departmentNumber + ": " + sum * 12);
+        return sum;
+    }
+    public static void averageDepartmentSalary(Employee[] employees, int departmentNumber){
+        if(departmentNumber < 1 || departmentNumber > 5){
+            throw new IllegalArgumentException("Некорректный номер отдела");
+        }
+        Object[] array = Arrays.stream(employees).filter(i -> i.getDepartmentNumber() == departmentNumber).toArray();
+        System.out.println("\nСредняя зп по отделу №" + departmentNumber + " за месяц: " + departmentSumSalary(employees,departmentNumber)/array.length +
+                "\nСредняя зп по отделу №" + departmentNumber + " за год: " +(departmentSumSalary(employees,departmentNumber)/array.length) * 12);
     }
 }
