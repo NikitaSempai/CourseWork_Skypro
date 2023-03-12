@@ -3,13 +3,13 @@ package ClassesToCourseWork;
 import java.util.Objects;
 
 public class Employee {
-    private String surname;
-    private String name;
-    private String patronymic;
+    final String surname;
+    final String name;
+    final String patronymic;
     private int departmentNumber;
     private int employeeSalary;
     private static int tempId = 1;
-    private int id;
+    final int id;
     public Employee(String surname, String name, String patronymic, int departmentNumber, int employeeSalary){
         this.surname = surname;
         this.name = name;
