@@ -28,7 +28,7 @@ public class Main {
         minSalary(employee);
         //максимальная зп
         maxSalary(employee);
-        // ФИО сотрудников
+        // ФИО сотрудниковdf
         getFio(employee);
         //индексация зп
         indexSalary(employee,100);
