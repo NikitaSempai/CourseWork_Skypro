@@ -3,14 +3,15 @@ package ClassesToCourseWork;
 import java.util.Objects;
 
 public class Employee {
-    final String surname;
-    final String name;
-    final String patronymic;
+    private final String surname;
+    private final String name;
+    private final String patronymic;
     private int departmentNumber;
     private int employeeSalary;
     private static int tempId = 1;
-    final int id;
-    public Employee(String surname, String name, String patronymic, int departmentNumber, int employeeSalary){
+    private final int id;
+
+    public Employee(String surname, String name, String patronymic, int departmentNumber, int employeeSalary) {
         this.surname = surname;
         this.name = name;
         this.patronymic = patronymic;
@@ -19,38 +20,53 @@ public class Employee {
         this.id = tempId;
         tempId++;
     }
-    public void setDepartmentNumber(int departmentNumber){
-        if(departmentNumber < 1 || departmentNumber > 5){
-          throw new IllegalArgumentException("Некорректный номер отдела");
+
+    public void setDepartmentNumber(int departmentNumber) {
+        if (departmentNumber < 1 || departmentNumber > 5) {
+            throw new IllegalArgumentException("Некорректный номер отдела");
         }
         this.departmentNumber = departmentNumber;
     }
-    public void setEmployeeSalary(int employeeSalary){
-        if(employeeSalary <= 0){
+
+    public void setEmployeeSalary(int employeeSalary) {
+        if (employeeSalary <= 0) {
             throw new IllegalArgumentException("Зарплата не может быть отрицательной или нулем");
         }
         this.employeeSalary = employeeSalary;
     }
-    public String getSurname(){
+
+    public String getSurname() {
+
         return this.surname;
     }
-    public String getName(){
+
+    public String getName() {
+
         return this.name;
     }
-    public String getPatronymic(){
+
+    public String getPatronymic() {
+
         return this.patronymic;
     }
-    public int getDepartmentNumber(){
+
+    public int getDepartmentNumber() {
+
         return this.departmentNumber;
     }
-    public int getEmployeeSalary(){
+
+    public int getEmployeeSalary() {
+
         return this.employeeSalary;
     }
+
     public int getId() {
+
         return this.id;
     }
+
     @Override
-    public String toString(){
+    public String toString() {
         return "Сотрудник №: " + this.id +
                 "\nФИО сотрудника: " + this.surname + " " + this.name + " " + this.patronymic +
                 "\nОтдел сотрудника: " + this.departmentNumber +
