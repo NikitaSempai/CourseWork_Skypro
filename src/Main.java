@@ -9,7 +9,7 @@ public class Main {
     public static Employee[] employee = new Employee[10];
 
     public static void main(String[] args) {
-        employee[0] = new Employee("Афанасьев", "Никита", "Алексеевич", 1, 60000);
+        employee[0] = new Employee("Афанасьев", "Никита", "Алексеевич", 1, 6200);
         employee[1] = new Employee("Горошенко", "Вадим", "Владимирович", 1, 90000);
         employee[2] = new Employee("Маслихов", "Антон", "Владимирович", 1, 200000);
         employee[3] = new Employee("Шевелев", "Даниил", "Александрович", 2, 50000);
@@ -66,18 +66,28 @@ public class Main {
 
     public static void minSalary() {
         System.out.println("\nСотрудник(и) с минимальной зарабатной платой: ");
-        Object[] employeesWithMinSalary = Arrays.stream(employee).filter(el -> el.getEmployeeSalary() == Arrays.stream(employee).mapToInt(l -> l.getEmployeeSalary()).min().getAsInt()).toArray();
-        for (Object employee : employeesWithMinSalary) {
-            System.out.println(employee);
+        employeeDepartmentSalary = null;
+        int minSalary = Integer.MAX_VALUE;
+        for(Employee employee: employee){
+            if(employee.getEmployeeSalary() < minSalary){
+                employeeDepartmentSalary = employee;
+                minSalary = employee.getEmployeeSalary();
+            }
         }
+        System.out.println(employeeDepartmentSalary);
     }
 
     public static void maxSalary() {
         System.out.println("\nСотрудник(и) с максимальной зарабатной платой: ");
-        Object[] employeesWithMaxSalary = Arrays.stream(employee).filter(el -> el.getEmployeeSalary() == Arrays.stream(employee).mapToInt(l -> l.getEmployeeSalary()).max().getAsInt()).toArray();
-        for (Object employee : employeesWithMaxSalary) {
-            System.out.println(employee);
+        employeeDepartmentSalary = null;
+        int maxSalary = Integer.MIN_VALUE;
+        for(Employee employee: employee){
+            if(employee.getEmployeeSalary() > maxSalary){
+                employeeDepartmentSalary = employee;
+                maxSalary = employee.getEmployeeSalary();
+            }
         }
+        System.out.println(employeeDepartmentSalary);
     }
 
     public static void getFio() {
@@ -148,9 +158,9 @@ public class Main {
         if (departmentNumber < 1 || departmentNumber > 5) {
             throw new IllegalArgumentException("Некорректный номер отдела");
         }
-        Object[] array = Arrays.stream(employee).filter(i -> i.getDepartmentNumber() == departmentNumber).toArray();
-        System.out.println("\nСредняя зп по отделу №" + departmentNumber + " за месяц: " + departmentSumSalary(departmentNumber) / array.length +
-                "\nСредняя зп по отделу №" + departmentNumber + " за год: " + (departmentSumSalary(departmentNumber) / array.length) * 12);
+        int departmentNumbers = Arrays.stream(employee).filter(i -> i.getDepartmentNumber() == departmentNumber).toArray().length;
+        System.out.println("\nСредняя зп по отделу №" + departmentNumber + " за месяц: " + departmentSumSalary(departmentNumber) / departmentNumbers +
+                "\nСредняя зп по отделу №" + departmentNumber + " за год: " + (departmentSumSalary(departmentNumber) / departmentNumbers) * 12);
     }
 
     public static void indexDepartmentSalary(int departmentNumber, int percent) {
